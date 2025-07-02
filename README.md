@@ -9,17 +9,30 @@
 - ✅ Maintain high accuracy despite **low-quality references**  
 - **Dataset Structure:**
 ```
-dataset/
-├── identities/
-│ ├── person_001/
-│ │ ├── clean.jpg
-│ │ └── distorted/
-│ │ ├── img1.jpg
-│ │ ├── img2.jpg
-│ │ └── ... (total 7 distorted images)
-│ ├── person_002/
-│ │ └── ...
-│ └── ... (total: 877 identity folders)
+Project/
+│
+├── Comys_Hackathon5/Task_B/
+│   ├── train/
+│   │   ├── ....jpg
+│   │   └── ...
+│   ├── val/
+│       ├── ....jpg
+│       └── ...        
+├── models/
+│   ├── Embedding_Seq.h5
+│   └── TripletNetwork.h5
+│
+├── results/
+│   ├── model_result.txt
+│   └── model_graph.png
+│
+├── scripts/
+│   ├── 01_triplet_network.py
+│   ├── 02_embedding_model.py
+│   └── 03_match_face.py
+│
+├── README.md
+└── .gitattributes
 ```
 
  **Model Goal**
@@ -31,7 +44,7 @@ dataset/
 
 Triplet Network with a ResNet50 backbone for learning embeddings that minimize intra-class distances (pull similar samples closer) and maximize inter-class distances (push dissimilar samples apart)
 <div align="center">
-  <img src="Screenshot 2025-07-02 012446.png" alt="Distance Formula"/>
+  <img src="Screenshot 2025-07-01 192607.png" alt="Distance Formula"/>
 </div>
 Triplet loss is a way to teach a machine-learning model how to recognize the similarity or differences between items. It uses groups of three items, called triplets, which consist of an anchor item, a similar item (positive), and a dissimilar item (negative). The goal is to make the model understand that the anchor is closer to the positive than the negative item. This helps the model distinguish between similar and dissimilar items more effectively.This aligns with the approach in ["Triplet Loss"](https://www.researchgate.net/publication/357529033_Triplet_Loss)
 
@@ -48,7 +61,9 @@ Triplet Mining Strategies:
 
   Semi-Hard Mining: Select triplets where: d(A,P) < d(A,N) < d(A,P)+α.
   Hard Mining: Select the hardest negatives (closest negatives) and hardest positives (furthest positives) in a batch.
-
+   <div align="center">
+  <img src="imageTripetloss.png" alt="Distance Formula"/>
+</div>
 ### 🔍  Why Triplet Loss?
 
 - ✔ **Handles Large Classes:**: Works well when there are thousands/millions of identities (e.g., in face recognition, where each person is a class).  
@@ -74,7 +89,7 @@ Triplet Mining Strategies:
 ### 🛠 Core Architecture
 The twin networks (CNNs) encode input face images into high-dimensional embedding vectors using a shared backbone.These embeddings are then compared using Euclidean distance to determine similarity:
 <div align="center">
-  <img src="Screenshot 2025-07-02 013124.png" alt="Distance Formula"/>
+  <img src="formula.png" alt="Distance Formula"/>
 </div>
 
 ### 🔄 Verification Workflow
@@ -88,21 +103,21 @@ The twin networks (CNNs) encode input face images into high-dimensional embeddin
 # 2. Feature Extraction
 ```python
 # Pseudocode
-embedding_a = resnet50(Image_A)  # Shape: (512,)
-embedding_b = resnet50(Image_B)  # Shape: (512,)
+embedding_a = resnet50(Image_A)  
+embedding_b = resnet50(Image_B)  
 
-1. Two face images are passed through the **Siamese Network**.
+1. Two face images are passed through the **Triplet Network**.
 2. Each branch (with shared weights) generates a **feature embedding**.
 3. A **distance metric** (e.g., *Euclidean distance*) computes the similarity between embeddings.
 4. The result is compared against a predefined **threshold**:
    - If **distance < threshold** → ✅ *Same Person*
    - If **distance ≥ threshold** → ❌ *Different Person*
-
+```
 ### 🖼️ Visualizing Training Triplets
 
-Below is a sample visualization of the triplet structure used in training the Siamese Network:
+Below is a sample visualization of the triplet structure used in training the Triplet Network:
 
-![Triplet Examples](https://github.com/dolly677/COMSYS-Hackathon-5-2025-TASK_B-/blob/1028189cccfb58896b0fd9cb271f0df8034fd67d/positivenegative.png)
+![Triplet Examples](tripetlossfullimage.png)
 
 - **Anchor**: The reference face image.
 - **Positive**: A different image of the *same person* as the anchor.
@@ -132,9 +147,9 @@ Such training ensures that the model can effectively distinguish between similar
 | F1-Score                 |0.9785  |
 |Threshold                 |0.945   |
 
-  ✅ Our trained Siamese Network achieved an impressive 99% verification accuracy on the validation/test set.
+  ✅ Our trained Triplet Network with a ResNet50 backbone achieved an impressive ~97% verification accuracy on the validation/test set.
 
-> 📌 Note: This high accuracy underscores the effectiveness of Siamese Networks in face verification tasks, especially when using embedding-based similarity with well-curated datasets.
+> 📌 Note: This high accuracy underscores the effectiveness of Triplet Networks in face verification tasks, especially when using embedding-based similarity with well-curated datasets.
 
 
 
