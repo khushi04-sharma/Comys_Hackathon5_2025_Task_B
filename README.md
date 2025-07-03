@@ -211,11 +211,11 @@ Directory Structure
             └── val/  # Same structure as train
 ```
 **4.🏋️ Training the Model**
-- Run Training Script
+- Run Training Script/
  ```
        python train_triplet.py
  ```
-- Files Generated
+- Files Generated in Model folder
  ```  
     TripletNetwork.h5 (Full triplet model)
 
