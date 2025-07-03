@@ -42,28 +42,17 @@ Project/
 
 ## 🧠 Model Description: Triplet Network with a ResNet50 backbone for Face Verification
 
-Triplet Network with a ResNet50 backbone for learning embeddings that minimize intra-class distances (pull similar samples closer) and maximize inter-class distances (push dissimilar samples apart)
+Triplet Network with a ResNet50 backbone for learning embeddings that minimize intra-class distances (pull similar samples closer) and maximize inter-class distances (push dissimilar samples apart). Triplet loss is a way to teach a machine-learning model how to recognize the similarity or differences between items. It uses groups of three items, called triplets, which consist of an anchor item, a similar item (positive), and a dissimilar item (negative). The goal is to make the model understand that the anchor is closer to the positive than the negative item. This helps the model distinguish between similar and dissimilar items more effectively.
+
 <div align="center">
-  <img src="Screenshot 2025-07-01 192607.png" alt="Distance Formula"/>
+  <img src="Screenshot 2025-07-01 192607.png" alt="Distance Formula" width="800" style="max-width:100%; height:auto;"/>
 </div>
-Triplet loss is a way to teach a machine-learning model how to recognize the similarity or differences between items. It uses groups of three items, called triplets, which consist of an anchor item, a similar item (positive), and a dissimilar item (negative). The goal is to make the model understand that the anchor is closer to the positive than the negative item. This helps the model distinguish between similar and dissimilar items more effectively.This aligns with the approach in Triplet Loss.
 
 **Triplet Loss Implementation**
-The standard triplet loss with a margin α: 
+
+The standard triplet loss with a margin α:
+
 <div align="center">
-  <img src="Screenshot 2025-07-02 013124.png" alt="Distance Formula"/>
-</div>
-where:
-d(A,P) = Euclidean distance between anchor and positive.
-d(A,N) = Euclidean distance between anchor and negative.
-α = margin (e.g., 0.2 to 1.0).
-
-Triplet Mining Strategies:
-  Random triplets are inefficient. Instead, use:
-
-  Semi-Hard Mining: Select triplets where: d(A,P) < d(A,N) < d(A,P)+α.
-  Hard Mining: Select the hardest negatives (closest negatives) and hardest positives (furthest positives) in a batch.
-   <div align="center">
   <img src="formula.png" alt="Distance Formula"/>
   <p>Triplet Loss Architecture for Face Embedding Learning</p>
 </div>
