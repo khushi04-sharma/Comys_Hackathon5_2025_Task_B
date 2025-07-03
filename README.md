@@ -64,19 +64,21 @@ Triplet Mining Strategies:
    <div align="center">
   <img src="imageTripetloss.png" alt="Distance Formula"/>
 </div>
-### 🔍  Why Triplet Loss?
+
+### 🔍 **Why Triplet Loss?**
+
 
 - ✔ **Handles Large Classes:**: Works well when there are thousands/millions of identities (e.g., in face recognition, where each person is a class).  
 - ✔ **Focuses on Relative Similarity:**: Enforces that a face is closer to all other faces of the same person than to any face of a different person.  
-- ✔ **Metric Learning**:  It directly optimizes the embedding space for distance-based comparisons (unlike softmax classification).  
-(https://www.researchgate.net/publication/357529033_Triplet_Loss)
+- ✔ **Metric Learning**:  It directly optimizes the ["embedding space for distance-based comparisons "](https://www.researchgate.net/publication/357529033_Triplet_Loss)(unlike softmax classification).  
+
 
 ### 🔍 Why ResNet50?
 
 - ✔ **Strong Feature Extraction**: Its deep residual layers capture hierarchical facial features (edges → textures → parts → whole face).  
 - ✔ **Pretrained Advantage**: Pretrained on ImageNet, it already understands generic visual features, speeding up convergence.  
-- ✔ **Balance of Speed and Accuracy**: Deeper than ResNet18 but more efficient than ResNet152, making it practical for deployment
-- (https://www.researchgate.net/publication/348248500_ResNet_50)
+- ✔ **Balance of Speed and Accuracy**: Deeper than ["ResNet18"](https://www.researchgate.net/publication/348248500_ResNet_50) but more efficient than ResNet152, making it practical for deployment
+ 
 
 ### 🔍 How They Work Together
 
