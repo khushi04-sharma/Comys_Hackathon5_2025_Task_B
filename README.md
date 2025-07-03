@@ -46,7 +46,7 @@ This Triplet Network leverages a ResNet50 backbone to learn discriminative embed
                      **distance(anchor, positive) < distance(anchor, negative) + margin**. </div>
                      
 <div align="center">
-  <img src="Screenshot 2025-07-01 192607.png" alt="Distance Formula" width="600" style="max-width:100%; height:auto;"/>
+  <img src="https://github.com/khushi04-sharma/Comys_Hackathon5_2025_Task_B/blob/b6ae81fc2e1de9c1ce6573e0a750f06dab7aaa0c/Screenshot%202025-07-02%20012446.png" alt="Distance Formula" width="600" style="max-width:100%; height:auto;"/>
 </div>
 
 **Triplet Loss Implementation**
@@ -54,8 +54,7 @@ This Triplet Network leverages a ResNet50 backbone to learn discriminative embed
 The standard triplet loss with a margin α:
 
 <div align="center">
-  <img src="formula.png" alt="Distance Formula"/>
-  <p>Triplet Loss Architecture for Face Embedding Learning</p>
+  <img src="formula.png" alt="Distance Formula" width="800" style="max-width:100%; height:auto;"/>
 </div>
 
 **Anchor (xa):** The reference image (red).
