@@ -69,22 +69,22 @@ The standard triplet loss with a margin α:
 ### 🔍 **Why Triplet Loss?**
 
 
-- ✔ **Handles Large Classes:**: Works well when there are thousands/millions of identities (e.g., in face recognition, where each person is a class).  
-- ✔ **Focuses on Relative Similarity:**: Enforces that a face is closer to all other faces of the same person than to any face of a different person.  
-- ✔ **Metric Learning**:  It directly optimizes the ["embedding space for distance-based comparisons "](https://www.researchgate.net/publication/357529033_Triplet_Loss)(unlike softmax classification).  
+- **Handles Large Classes:**: Works well when there are thousands/millions of identities (e.g., in face recognition, where each person is a class).  
+- **Focuses on Relative Similarity:**: Enforces that a face is closer to all other faces of the same person than to any face of a different person.  
+- **Metric Learning**:  It directly optimizes the ["embedding space for distance-based comparisons "](https://www.researchgate.net/publication/357529033_Triplet_Loss)(unlike softmax classification).  
 
 
 ### 🔍 Why ResNet50?
 
-- ✔ **Strong Feature Extraction**: Its deep residual layers capture hierarchical facial features (edges → textures → parts → whole face).  
-- ✔ **Pretrained Advantage**: Pretrained on ImageNet, it already understands generic visual features, speeding up convergence.  
-- ✔ **Balance of Speed and Accuracy**: Deeper than ["ResNet18"](https://www.researchgate.net/publication/348248500_ResNet_50) but more efficient than ResNet152, making it practical for deployment
+- **Strong Feature Extraction**: Its deep residual layers capture hierarchical facial features (edges → textures → parts → whole face).  
+- **Pretrained Advantage**: Pretrained on ImageNet, it already understands generic visual features, speeding up convergence.  
+- **Balance of Speed and Accuracy**: Deeper than ["ResNet18"](https://www.researchgate.net/publication/348248500_ResNet_50) but more efficient than ResNet152, making it practical for deployment
  
 
 ### 🔍 How They Work Together
 
-- ✔ **Input**: Three face images (anchor, positive, negative). 
-- ✔ **ResNet50**:  Extracts features for each face.  
+- ✔**Input**: Three face images (anchor, positive, negative). 
+- ✔**ResNet50**:  Extracts features for each face.  
 - ✔ **Embedding Layer**:  Maps features to a low-dimensional space (e.g., 128-D).  
 - ✔ **Triplet Loss**:Computes distances and updates the model to satisfy:d(A,P)+α<d(A,N)
                        where : α is a margin (e.g., 0.2). 
