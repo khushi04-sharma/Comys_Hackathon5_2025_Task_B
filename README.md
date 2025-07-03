@@ -46,7 +46,7 @@ Triplet Network with a ResNet50 backbone for learning embeddings that minimize i
 <div align="center">
   <img src="Screenshot 2025-07-01 192607.png" alt="Distance Formula"/>
 </div>
-Triplet loss is a way to teach a machine-learning model how to recognize the similarity or differences between items. It uses groups of three items, called triplets, which consist of an anchor item, a similar item (positive), and a dissimilar item (negative). The goal is to make the model understand that the anchor is closer to the positive than the negative item. This helps the model distinguish between similar and dissimilar items more effectively.This aligns with the approach in Triplet Loss. [![Paper Link](https://img.shields.io/badge/ResearchGate-Paper-00CCBB)](https://www.researchgate.net/publication/357529033_Triplet_Loss)
+Triplet loss is a way to teach a machine-learning model how to recognize the similarity or differences between items. It uses groups of three items, called triplets, which consist of an anchor item, a similar item (positive), and a dissimilar item (negative). The goal is to make the model understand that the anchor is closer to the positive than the negative item. This helps the model distinguish between similar and dissimilar items more effectively.This aligns with the approach in Triplet Loss.
 
 **Triplet Loss Implementation**
 The standard triplet loss with a margin α: 
@@ -101,6 +101,7 @@ Triplet Mining Strategies:
 The twin networks (CNNs) encode input face images into high-dimensional embedding vectors using a shared backbone.These embeddings are then compared using Euclidean distance to determine similarity:
 <div align="center">
   <img src="tripetlossfullimage.png" alt="Distance Formula"/>
+  <p>Metric learning with Triplet Loss: Embeddings from shared-weight CNNs are adjusted to cluster similar (anchor/positive) and separate dissimilar (anchor/negative) samples</p>
   
 </div>
 
@@ -129,8 +130,7 @@ embedding_b = resnet50(Image_B)
 
 Below is a sample visualization of the triplet structure used in training the Triplet Network:
 
-https://github.com/khushi04-sharma/Comys_Hackathon5_2025_Task_B/blob/152dd25b9c8b9d0cd3f6b0113e7aa9c67211828d/positivenegative.png
-
+![Alt text](https://github.com/khushi04-sharma/Comys_Hackathon5_2025_Task_B/blob/152dd25b9c8b9d0cd3f6b0113e7aa9c67211828d/positivenegative.png)
 - **Anchor**: The reference face image.
 - **Positive**: A different image of the *same person* as the anchor.
 - **Negative**: An image of a *different person* from the anchor.
