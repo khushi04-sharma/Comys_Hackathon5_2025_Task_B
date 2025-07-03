@@ -166,6 +166,7 @@ Such training ensures that the model can effectively distinguish between similar
 | Recall                   | 0.9841 |
 | F1-Score                 |0.9785  |
 |Threshold                 |0.945   |
+|micro-averaged F1-score   |0.9785  |
 
   ✅ Our trained Triplet Network with a ResNet50 backbone achieved an impressive ~97% verification accuracy on the validation/test set.
 
