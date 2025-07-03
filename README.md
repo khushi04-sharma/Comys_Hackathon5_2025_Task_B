@@ -50,7 +50,9 @@ Triplet loss is a way to teach a machine-learning model how to recognize the sim
 
 Triplet Loss Implementation 
 The standard triplet loss with a margin α: 
-                                         L=max(d(A,P)−d(A,N)+α,0)
+<div align="center">
+  <img src="Screenshot 2025-07-02 013124.png" alt="Distance Formula"/>
+</div>
 where:
 d(A,P) = Euclidean distance between anchor and positive.
 d(A,N) = Euclidean distance between anchor and negative.
