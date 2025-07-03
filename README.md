@@ -46,7 +46,7 @@ Triplet Network with a ResNet50 backbone for learning embeddings that minimize i
 <div align="center">
   <img src="Screenshot 2025-07-01 192607.png" alt="Distance Formula"/>
 </div>
-Triplet loss is a way to teach a machine-learning model how to recognize the similarity or differences between items. It uses groups of three items, called triplets, which consist of an anchor item, a similar item (positive), and a dissimilar item (negative). The goal is to make the model understand that the anchor is closer to the positive than the negative item. This helps the model distinguish between similar and dissimilar items more effectively.This aligns with the approach in ["Triplet Loss"](https://www.researchgate.net/publication/357529033_Triplet_Loss)
+Triplet loss is a way to teach a machine-learning model how to recognize the similarity or differences between items. It uses groups of three items, called triplets, which consist of an anchor item, a similar item (positive), and a dissimilar item (negative). The goal is to make the model understand that the anchor is closer to the positive than the negative item. This helps the model distinguish between similar and dissimilar items more effectively.This aligns with the approach in Triplet Loss. 
 
 Triplet Loss Implementation 
 The standard triplet loss with a margin α: 
@@ -154,6 +154,11 @@ Such training ensures that the model can effectively distinguish between similar
   ✅ Our trained Triplet Network with a ResNet50 backbone achieved an impressive ~97% verification accuracy on the validation/test set.
 
 > 📌 Note: This high accuracy underscores the effectiveness of Triplet Networks in face verification tasks, especially when using embedding-based similarity with well-curated datasets.
+> 
+## 🤝 Acknowledgements
+
+Developed by [AI-dentifiers](https://github.com/khushi04-sharma/Comys_Hackathon5_2025_Task_B) and contributor.  
+For academic/educational use only.
 
 
 
