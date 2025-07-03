@@ -252,6 +252,7 @@ The evaluation script automatically computes the optimal verification threshold:
 
 **✅ MATCH: Same identity**
 
+---
 
 ## 🤝 Acknowledgements
 
