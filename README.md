@@ -129,7 +129,7 @@ embedding_b = resnet50(Image_B)
 
 Below is a sample visualization of the triplet structure used in training the Triplet Network:
 
-
+https://github.com/khushi04-sharma/Comys_Hackathon5_2025_Task_B/blob/152dd25b9c8b9d0cd3f6b0113e7aa9c67211828d/positivenegative.png
 
 - **Anchor**: The reference face image.
 - **Positive**: A different image of the *same person* as the anchor.
