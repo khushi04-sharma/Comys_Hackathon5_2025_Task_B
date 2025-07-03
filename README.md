@@ -6,39 +6,37 @@
 ### 🌟 Key Challenges
 - ✅ Handle **various distortions** (blur, noise, occlusions) in input images  
 - ✅ Generalize to **unseen identities** during inference  
-- ✅ Maintain high accuracy despite **low-quality references**  
-- **Dataset Structure:**
+- ✅ Maintain high accuracy despite **low-quality references**
+
+---
+
+**Dataset Structure:**
 ```
 Project/
 │
 ├── Comys_Hackathon5/Task_B/
-│   ├── train/
-│   │   ├── ....jpg
-│   │   └── ...
-│   ├── val/
-│       ├── ....jpg
-│       └── ...        
+│       ├── train/
+│       │      ├── ....jpg
+│       │      └── ...
+│       ├── val/
+│             ├── ....jpg
+│             └── ...        
 ├── models/
-│   ├── Embedding_Seq.h5
-│   └── TripletNetwork.h5
+│      ├── Embedding_Seq.h5
+│      └── TripletNetwork.h5
 │
 ├── results/
-│   ├── model_result.txt
-│   └── model_graph.png
+│      ├── model_result.txt
+│      └── model_graph.png
 │
 ├── scripts/
-│   ├── 01_triplet_network.py
-│   ├── 02_embedding_model.py
-│   └── 03_match_face.py
+│       ├── 01_triplet_network.py
+│       ├── 02_embedding_model.py
+│       └── 03_match_face.py
 │
 ├── README.md
 └── .gitattributes
 ```
-
- **Model Goal**
-- Learn a similarity-based system that embeds faces such that:
-- Similar identities are **close in embedding space**
-- Dissimilar faces are **far apart**
 
 ## 🧠 Model Description: Triplet Network with a ResNet50 backbone for Face Verification
 
@@ -49,6 +47,11 @@ This Triplet Network leverages a ResNet50 backbone to learn discriminative embed
   <img src="https://github.com/khushi04-sharma/Comys_Hackathon5_2025_Task_B/blob/b6ae81fc2e1de9c1ce6573e0a750f06dab7aaa0c/Screenshot%202025-07-02%20012446.png" alt="Distance Formula" width="600" style="max-width:100%; height:auto;"/>
 </div>
 
+ **Model Goal**
+- Learn a similarity-based system that embeds faces such that:
+- Similar identities are **close in embedding space**
+- Dissimilar faces are **far apart**
+  
 **Triplet Loss Implementation**
 
 The standard triplet loss with a margin α:
@@ -95,14 +98,14 @@ The twin networks (CNNs) encode input face images into high-dimensional embeddin
 </div>
 
 ### 🔄 Verification Workflow
-# 1. Preprocessing
+**1. Preprocessing**
 - Input: Two face images (Image A and Image B)
 - Steps:
   - Face detection & alignment (MTCNN recommended)
   - Resize to `224×224` (ResNet standard input)
   - Normalize pixel values
 
-# 2. Feature Extraction
+**2. Feature Extraction**
 ```python
 # Pseudocode
 embedding_a = resnet50(Image_A)  
@@ -141,6 +144,20 @@ Such training ensures that the model can effectively distinguish between similar
 | Loss Function      | Contrastive Loss               |
 | Distance Metric    | Euclidean Distance             |
 
+### Hardware Requirements
+
+| Hardware       | Configuration                | Training Time Estimate | Notes                          |
+|----------------|------------------------------|------------------------|--------------------------------|
+| **High-End GPU** | NVIDIA RTX 3090 (24GB VRAM)  | ~2 hours               | Recommended for full batch size |
+| **Mid-Range GPU** | NVIDIA RTX 2080 (8GB VRAM)   | ~3-4 hours            | Reduce batch size to 16        |
+| **CPU Only**    | Modern 8-core CPU            | 5-6 hours             | Use batch size 8-12            |
+| **Cloud**       | Google Colab Pro (T4/V100)   | 1.5-3 hours           | Free tier may have limitations |
+
+**Notes:**
+- Batch size: 32 recommended for GPUs, reduce for lower VRAM
+- Training times based on 50k samples dataset
+- SSD storage recommended for faster data loading
+
 ### 🏆📈  Performance Metrics
 | Metric                   | Value  |
 |--------------------------|--------|
@@ -153,11 +170,98 @@ Such training ensures that the model can effectively distinguish between similar
   ✅ Our trained Triplet Network with a ResNet50 backbone achieved an impressive ~97% verification accuracy on the validation/test set.
 
 > 📌 Note: This high accuracy underscores the effectiveness of Triplet Networks in face verification tasks, especially when using embedding-based similarity with well-curated datasets.
-> 
+>
+## How to Reproduce the Results using  Triplet Network for Face Matching 
+
+**1. Install Requirements**
+```
+# Create and activate virtual environment (recommended)
+python -m venv triplet_env
+source triplet_env/bin/activate  # Linux/Mac
+.\triplet_env\Scripts\activate  # Windows
+```
+**2. Install dependencies**
+```
+pip install tensorflow scikit-learn matplotlib tqdm numpy
+```
+**3.📂 Dataset Preparation**
+
+**Prepare Your Data**
+
+1. Each identity should have:
+
+2. Original images in their folder
+
+3. Variants (distortions) in a subfolder named distortion
+
+```
+Directory Structure  
+        Comys_Hackathon5/
+        └── Task_B/
+            ├── train/
+            │   ├── person_1/
+            │   │   ├── image1.jpg
+            │   │   ├── distortion/
+            │   │   │   ├── distorted1.jpg  # Same person, different conditions
+            │   ├── person_2/
+            │   │   ├── image1.jpg
+            │   │   ├── distortion/
+            │   │   │   ├── distorted1.jpg
+            └── val/  # Same structure as train
+```
+**4.🏋️ Training the Model**
+- Run Training Script
+ ```
+       python train_triplet.py
+ ```
+- Files Generated
+ ```  
+    TripletNetwork.h5 (Full triplet model)
+
+    Embedding_Seq.h5 (Embedding model)
+
+    triplet_training_loss.png (Training curves)
+```
+### 5.📊 Evaluation
+
+**📊 Threshold Tuning**
+
+The evaluation script automatically computes the optimal verification threshold:
+
+| Metric      | Value   | Description                          |
+|-------------|---------|--------------------------------------|
+| **Threshold** | 0.97    | Optimal decision boundary            |
+| Accuracy    | 93.20%  | Overall correct predictions          |
+| Precision   | 97.29%  | True positives / (True + False pos)  |
+| Recall      | 98.41%  | True positives / All actual positives|
+| F1 Score    | 97.85%  | Harmonic mean of precision & recall  |
+
+✅ **Recommended threshold:** `0.97` for best balanced performance
+    
+**Manual Verification**
+
+```
+    python verify.py \
+        --reference "050_frontal_foggy.jpg" \
+        --test "050_frontal_rainy.jpg" \
+        --threshold 0.945
+```
+
+## Output:
+
+**🔍 Distance = 0.7824**
+
+**✅ MATCH: Same identity**
+
+
 ## 🤝 Acknowledgements
 
 Developed by [AI-dentifiers](https://github.com/khushi04-sharma/Comys_Hackathon5_2025_Task_B) and contributor.  
 For academic/educational use only.
+
+
+## Contact:
+For inquiries about permitted uses or collaborations, please contact: [dollysharma12.ab@gmail.com]
 
 
 
