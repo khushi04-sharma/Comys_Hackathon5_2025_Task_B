@@ -42,10 +42,11 @@ Project/
 
 ## 🧠 Model Description: Triplet Network with a ResNet50 backbone for Face Verification
 
-Triplet Network with a ResNet50 backbone for learning embeddings that minimize intra-class distances (pull similar samples closer) and maximize inter-class distances (push dissimilar samples apart). Triplet loss is a way to teach a machine-learning model how to recognize the similarity or differences between items. It uses groups of three items, called triplets, which consist of an anchor item, a similar item (positive), and a dissimilar item (negative). The goal is to make the model understand that the anchor is closer to the positive than the negative item. This helps the model distinguish between similar and dissimilar items more effectively.
-
+This Triplet Network leverages a ResNet50 backbone to learn discriminative embeddings through metric learning. The core objective is to minimize intra-class distances (pulling similar samples closer in the embedding space) while maximizing inter-class distances (pushing dissimilar samples apart). The model employs triplet loss, which trains on groups of three items(positive,negative,anchor).The optimization ensures that the anchor is always closer to the positive than to the negative by a defined margin :<div align="center">
+                     **distance(anchor, positive) < distance(anchor, negative) + margin**. </div>
+                     
 <div align="center">
-  <img src="Screenshot 2025-07-01 192607.png" alt="Distance Formula" width="800" style="max-width:100%; height:auto;"/>
+  <img src="Screenshot 2025-07-01 192607.png" alt="Distance Formula" width="600" style="max-width:100%; height:auto;"/>
 </div>
 
 **Triplet Loss Implementation**
@@ -120,6 +121,8 @@ embedding_b = resnet50(Image_B)
 Below is a sample visualization of the triplet structure used in training the Triplet Network:
 
 ![Alt text](https://github.com/khushi04-sharma/Comys_Hackathon5_2025_Task_B/blob/152dd25b9c8b9d0cd3f6b0113e7aa9c67211828d/positivenegative.png)
+<div  align="center"> Anchor-positive pairs (same class) vs. anchor-negative pairs (different classes) for metric learning</div>
+
 - **Anchor**: The reference face image.
 - **Positive**: A different image of the *same person* as the anchor.
 - **Negative**: An image of a *different person* from the anchor.
