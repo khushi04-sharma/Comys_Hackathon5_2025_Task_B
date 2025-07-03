@@ -64,7 +64,7 @@ Triplet Mining Strategies:
   Semi-Hard Mining: Select triplets where: d(A,P) < d(A,N) < d(A,P)+α.
   Hard Mining: Select the hardest negatives (closest negatives) and hardest positives (furthest positives) in a batch.
    <div align="center">
-  <img src="imageTripetloss.png" alt="Distance Formula"/>
+  <img src="formula.png" alt="Distance Formula"/>
 </div>
 
 ### 🔍 **Why Triplet Loss?**
