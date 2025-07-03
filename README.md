@@ -106,17 +106,17 @@ The twin networks (CNNs) encode input face images into high-dimensional embeddin
   - Normalize pixel values
 
 **2. Feature Extraction**
-```python
+```
 # Pseudocode
 embedding_a = resnet50(Image_A)  
 embedding_b = resnet50(Image_B)  
 
-1. Two face images are passed through the **Triplet Network**.
-2. Each branch (with shared weights) generates a **feature embedding**.
-3. A **distance metric** (e.g., *Euclidean distance*) computes the similarity between embeddings.
+1. Two face images are passed through the Triplet Network.
+2. Each branch (with shared weights) generates a feature embedding.
+3. A distance metric (e.g., Euclidean distance) computes the similarity between embeddings.
 4. The result is compared against a predefined **threshold**:
-   - If **distance < threshold** → ✅ *Same Person*
-   - If **distance ≥ threshold** → ❌ *Different Person*
+   - If distance < threshold → ✅ Same Person
+   - If distance ≥ threshold → ❌ Different Person
 ```
 ### 🖼️ Visualizing Training Triplets
 
@@ -184,7 +184,7 @@ source triplet_env/bin/activate  # Linux/Mac
 ```
 pip install tensorflow scikit-learn matplotlib tqdm numpy
 ```
-**3.📂 Dataset Preparation**
+**3. Dataset Preparation**
 
 **Prepare Your Data**
 
@@ -241,15 +241,13 @@ The evaluation script automatically computes the optimal verification threshold:
 **Manual Verification**
 
 ```
-    python verify.py \
+    python Script/03_Match_face.py \
         --reference "050_frontal_foggy.jpg" \
         --test "050_frontal_rainy.jpg" \
-        --threshold 0.945
+        
 ```
 
 ## Output:
-
-**🔍 Distance = 0.7824**
 
 **✅ MATCH: Same identity**
 
