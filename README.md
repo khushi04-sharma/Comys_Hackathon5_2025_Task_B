@@ -46,25 +46,24 @@ Triplet Network with a ResNet50 backbone for learning embeddings that minimize i
 <div align="center">
   <img src="Screenshot 2025-07-01 192607.png" alt="Distance Formula"/>
 </div>
-Triplet loss is a way to teach a machine-learning model how to recognize the similarity or differences between items. It uses groups of three items, called triplets, which consist of an anchor item, a similar item (positive), and a dissimilar item (negative). The goal is to make the model understand that the anchor is closer to the positive than the negative item. This helps the model distinguish between similar and dissimilar items more effectively.This aligns with the approach in ["Triplet Loss"](https://www.researchgate.net/publication/357529033_Triplet_Loss)
 
-Triplet Loss Implementation 
+Triplet loss is a way to teach a machine-learning model how to recognize the similarity or differences between items. It uses groups of three items, called triplets, which consist of an anchor item, a similar item (positive), and a dissimilar item (negative). The goal is to make the model understand that the anchor is closer to the positive than the negative item. This helps the model distinguish between similar and dissimilar items more effectively.This aligns with the approach in Triplet Loss. [![Paper Link](https://img.shields.io/badge/ResearchGate-Paper-00CCBB)](https://www.researchgate.net/publication/357529033_Triplet_Loss)
+
+
+**Triplet Loss Implementation:**
+
 The standard triplet loss with a margin α: 
+
                                          L=max(d(A,P)−d(A,N)+α,0)
+                                         
 where:
+
 d(A,P) = Euclidean distance between anchor and positive.
+
 d(A,N) = Euclidean distance between anchor and negative.
+
 α = margin (e.g., 0.2 to 1.0).
-
-Triplet Mining Strategies:
-  Random triplets are inefficient. Instead, use:
-
-  Semi-Hard Mining: Select triplets where: d(A,P) < d(A,N) < d(A,P)+α.
-  Hard Mining: Select the hardest negatives (closest negatives) and hardest positives (furthest positives) in a batch.
-   <div align="center">
-  <img src="imageTripetloss.png" alt="Distance Formula"/>
-</div>
-
+![Triplet Examples](tripetlossfullimage.png)
 ### 🔍 **Why Triplet Loss?**
 
 
@@ -92,8 +91,14 @@ Triplet Mining Strategies:
 The twin networks (CNNs) encode input face images into high-dimensional embedding vectors using a shared backbone.These embeddings are then compared using Euclidean distance to determine similarity:
 <div align="center">
   <img src="formula.png" alt="Distance Formula"/>
+  <p>Triplet Loss Architecture for Face Embedding Learning</p>
 </div>
 
+**Anchor (xa):** The reference image (red)
+
+**Positive (x⁺):** A similar image of the same identity (green)
+
+**Negative (x⁻):** An image of a different identity (blue)
 ### 🔄 Verification Workflow
 # 1. Preprocessing
 - Input: Two face images (Image A and Image B)
@@ -118,8 +123,7 @@ embedding_b = resnet50(Image_B)
 ### 🖼️ Visualizing Training Triplets
 
 Below is a sample visualization of the triplet structure used in training the Triplet Network:
-
-![Triplet Examples](tripetlossfullimage.png)
+![Projecr Triplet Examples](https://github.com/khushi04-sharma/Comys_Hackathon5_2025_Task_B/blob/913de08d5fc63228fe7356c8be749c19569fc507/positivenegative.png)
 
 - **Anchor**: The reference face image.
 - **Positive**: A different image of the *same person* as the anchor.
@@ -153,5 +157,9 @@ Such training ensures that the model can effectively distinguish between similar
 
 > 📌 Note: This high accuracy underscores the effectiveness of Triplet Networks in face verification tasks, especially when using embedding-based similarity with well-curated datasets.
 
+## 🤝 Acknowledgements
+
+Developed by [AI-dentifiers](https://github.com/khushi04-sharma/Comys_Hackathon5_2025_Task_B) and contributor.  
+For academic/educational use only.
 
 
