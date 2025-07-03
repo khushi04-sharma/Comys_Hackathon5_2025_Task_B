@@ -181,6 +181,16 @@ python -m venv triplet_env
 source triplet_env/bin/activate  # Linux/Mac
 .\triplet_env\Scripts\activate  # Windows
 ```
+**OR**
+
+Download the ZIP file from the 🔹 [" Google Drive Link "](https://drive.google.com/file/d/1lXKx30IEG8wLWUuGX_TUExG_hWCcHHnz/view?usp=sharing) (**RECOMMENDED**)[with dataset], then follow these steps:
+
+  Step-1: Extract the ZIP file to your desired location.
+
+  Step-2: Navigate to the extracted folder.
+
+  Step-3: Locate and open the directory to access the project files.
+  
 **2. Install dependencies**
 ```
 pip install tensorflow scikit-learn matplotlib tqdm numpy
